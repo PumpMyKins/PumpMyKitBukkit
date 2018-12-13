@@ -56,6 +56,7 @@
   	
   	<modules>
   		<module>pumpmykitbukkit</module>
+		<module>pumpmykitcore</module>		
   	</modules>
   	
   	<build>

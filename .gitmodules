@@ -1,0 +1,3 @@
+[submodule "pumpmykitcore"]
+	path = pumpmykitcore
+	url = https://github.com/PumpMyKins/PumpMyKitCore.git
