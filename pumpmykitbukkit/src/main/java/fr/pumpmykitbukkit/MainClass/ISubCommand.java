@@ -1,4 +1,4 @@
-package fr.pumpmykitbukkit;
+package fr.pumpmykitbukkit.MainClass;
 
 import java.util.List;
 

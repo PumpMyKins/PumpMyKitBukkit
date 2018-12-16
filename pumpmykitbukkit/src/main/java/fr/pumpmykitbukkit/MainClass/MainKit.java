@@ -1,4 +1,4 @@
-package fr.pumpmykitbukkit;
+package fr.pumpmykitbukkit.MainClass;
 
 import org.bukkit.plugin.java.JavaPlugin;
 

@@ -1,4 +1,4 @@
-package fr.pumpmykitbukkit;
+package fr.pumpmykitbukkit.Command;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import fr.pumpmykitbukkit.MainClass.ISubCommand;
 import fr.pumpmykitcore.utils.KitsUtils;
 import fr.pumpmykitcore.utils.Utils;
 import net.md_5.bungee.api.ChatColor;

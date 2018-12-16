@@ -1,9 +1,11 @@
-package fr.pumpmykitbukkit;
+package fr.pumpmykitbukkit.Command;
 
 import java.util.List;
 
 import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
+
+import fr.pumpmykitbukkit.MainClass.ISubCommand;
 
 public class KitGiverCommand implements ISubCommand {
 

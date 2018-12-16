@@ -1,5 +1,11 @@
-package fr.pumpmykitbukkit;
+package fr.pumpmykitbukkit.MainClass;
 
+import fr.pumpmykitbukkit.Command.KitAddCommand;
+import fr.pumpmykitbukkit.Command.KitChgCommand;
+import fr.pumpmykitbukkit.Command.KitDelCommand;
+import fr.pumpmykitbukkit.Command.KitGiverCommand;
+import fr.pumpmykitbukkit.Command.KitHelpCommand;
+import fr.pumpmykitbukkit.Command.KitListCommand;
 import fr.pumpmykitcore.command.CommandHandler;
 import fr.pumpmykitcore.obj.Kit;
 

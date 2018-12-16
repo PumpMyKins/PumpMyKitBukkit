@@ -1,4 +1,4 @@
-package fr.pumpmykitbukkit;
+package fr.pumpmykitbukkit.event;
 
 import java.util.ArrayList;
 import java.util.List;
