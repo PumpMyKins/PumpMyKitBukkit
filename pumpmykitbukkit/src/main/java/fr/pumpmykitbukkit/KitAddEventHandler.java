@@ -78,7 +78,7 @@ public class KitAddEventHandler {
 					isEula = true;
 				}
 				List<String> itemLore = e.getInventory().getItem(16).getItemMeta().getLore();
-				itemLore.add(1, String.valueOf(xpOn));
+				itemLore.add(1, String.valueOf(isEula));
 				itemLore.remove(2);
 				ItemMeta itemMeta = e.getInventory().getItem(16).getItemMeta();
 				itemMeta.setLore(itemLore);
