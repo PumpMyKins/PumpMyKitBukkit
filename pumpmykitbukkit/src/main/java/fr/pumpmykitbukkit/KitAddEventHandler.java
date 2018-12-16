@@ -8,6 +8,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.pumpmykitcore.obj.Item;
 import fr.pumpmykitcore.obj.Kit;
@@ -18,58 +19,73 @@ public class KitAddEventHandler {
 	public void onInventoryClickEvent(InventoryClickEvent e) {
 
 		if(e.getInventory().getName().equals("Nouveau Kit : ")) {
-			
-			//TODO fix dynamic lore !! Make a cool method to not manipulate like a dragon
-			
+
 			int xp = 0;
 			boolean xpOn = Boolean.valueOf(e.getInventory().getItem(17).getItemMeta().getLore().get(1));
-			
+			boolean isEula = Boolean.valueOf(e.getInventory().getItem(16).getItemMeta().getLore().get(1));
+
 			if(e.getCurrentItem().isSimilar(e.getInventory().getItem(8))) {
-				
+
 				xp = xp + 5;
 				if(!xpOn) {
 					xpOn = true;
-					e.getInventory().getItem(17).setItemMeta(e.getInventory().getItem(17).getItemMeta().setLore(e.getInventory().getItem(17).getItemMeta().getLore().add(1, "true")));
-					e.getInventory().getItem(17).getItemMeta().getLore().remove(2);
-					e.getInventory().getItem(17).getItemMeta().getLore().add(2, Integer.toString(xp) + "Niveau(x)");
-					e.getInventory().getItem(17).getItemMeta().getLore().remove(3);
-
+					List<String> itemLore = e.getInventory().getItem(17).getItemMeta().getLore();
+					itemLore.add(1, "true");
+					itemLore.remove(2);
+					itemLore.add(2, Integer.toString(xp) + "Niveau(x)");
+					itemLore.remove(3);
+					ItemMeta itemMeta = e.getInventory().getItem(17).getItemMeta();
+					itemMeta.setLore(itemLore);
+					e.getInventory().getItem(17).setItemMeta(itemMeta);
 				}
-				e.setCancelled(true);
 			}
 			if(e.getCurrentItem().isSimilar(e.getInventory().getItem(26))) {
 				xp = xp - 5;
+				if(xp < 0) {
+					xp = 0;
+				}
 				if(!xpOn) {
 					xpOn = true;
-					e.getInventory().getItem(17).getItemMeta().getLore().add(1, "true");
-					e.getInventory().getItem(17).getItemMeta().getLore().remove(2);
-					e.getInventory().getItem(17).getItemMeta().getLore().add(2, Integer.toString(xp) + "Niveau(x)");
-					e.getInventory().getItem(17).getItemMeta().getLore().remove(3);
+					List<String> itemLore = e.getInventory().getItem(17).getItemMeta().getLore();
+					itemLore.add(1, String.valueOf(xpOn));
+					itemLore.remove(2);
+					itemLore.add(2, Integer.toString(xp) + "Niveau(x)");
+					itemLore.remove(3);
+					ItemMeta itemMeta = e.getInventory().getItem(17).getItemMeta();
+					itemMeta.setLore(itemLore);
+					e.getInventory().getItem(17).setItemMeta(itemMeta);
 				}
-				e.setCancelled(true);
 			}
 			if(e.getCurrentItem().isSimilar(e.getInventory().getItem(17))) {
 				if(xpOn) {
 					xpOn = false;
-					e.getInventory().getItem(17).getItemMeta().getLore().add(1, "false");
-					e.getInventory().getItem(17).getItemMeta().getLore().remove(2);
 				}
 				else {
 					xpOn = true;
-					e.getInventory().getItem(17).getItemMeta().getLore().add(1, "true");
-					e.getInventory().getItem(17).getItemMeta().getLore().remove(2);
 				}
-				e.setCancelled(true);
+				List<String> itemLore = e.getInventory().getItem(17).getItemMeta().getLore();
+				itemLore.add(1, String.valueOf(xpOn));
+				itemLore.remove(2);
+				ItemMeta itemMeta = e.getInventory().getItem(17).getItemMeta();
+				itemMeta.setLore(itemLore);
+				e.getInventory().getItem(17).setItemMeta(itemMeta);
+
 			}
 			if(e.getCurrentItem().isSimilar(e.getInventory().getItem(16))) {
-				if(Boolean.valueOf(e.getInventory().getItem(16).getItemMeta().getLore().get(1))) {
-					e.getInventory().getItem(16).getItemMeta().getLore().add(1, "false");
-					e.getInventory().getItem(16).getItemMeta().getLore().remove(2);
+				if(isEula) {
+					isEula = false;
 				} else {
-					e.getInventory().getItem(16).getItemMeta().getLore().add(1, "true");
-					e.getInventory().getItem(16).getItemMeta().getLore().remove(2);
+					isEula = true;
 				}
+				List<String> itemLore = e.getInventory().getItem(16).getItemMeta().getLore();
+				itemLore.add(1, String.valueOf(xpOn));
+				itemLore.remove(2);
+				ItemMeta itemMeta = e.getInventory().getItem(16).getItemMeta();
+				itemMeta.setLore(itemLore);
+				e.getInventory().getItem(16).setItemMeta(itemMeta);
+
 			}
+			e.setCancelled(true);
 		}
 	}
 
