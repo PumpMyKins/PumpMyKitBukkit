@@ -19,9 +19,20 @@ public class KitAddCommand implements ISubCommand {
 	public boolean onSubCommand(Player sender, Command cmd, List<String> args) {
 
 		Inventory invKit = Bukkit.createInventory(null, 27, ChatColor.RED + "" + ChatColor.BOLD + "Nouveau Kit : " + args.get(1));
-		invKit.setItem(7, new ItemStack(Material.getMaterial(7),(short) 0));
-		invKit.setItem(16, new ItemStack(Material.getMaterial(7),(short) 0));
-		invKit.setItem(25, new ItemStack(Material.getMaterial(7),(short) 0));
+		
+		ItemStack bedRock = new ItemStack(Material.BEDROCK, 1);
+		ItemMeta bedRockMeta = bedRock.getItemMeta();
+		bedRockMeta.setDisplayName(args.get(1));
+		bedRock.setItemMeta(bedRockMeta);
+		invKit.setItem(7, new ItemStack(bedRock));
+		invKit.setItem(25, new ItemStack(bedRock));
+		
+		//EULA SETTINGS
+		ItemStack noteBlock = new ItemStack(Material.NOTE_BLOCK, 1);
+		ItemMeta noteBlockMeta = noteBlock.getItemMeta();
+		noteBlockMeta.setDisplayName("EULA : True");
+		noteBlock.setItemMeta(noteBlockMeta);
+		invKit.setItem(16, noteBlock);
 		
 		//XP SETTINGS
 		ItemStack addXp = new ItemStack(Material.getMaterial(95), 1,(short) 0, (byte) 5);
