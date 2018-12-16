@@ -1,6 +1,7 @@
 package fr.pumpmykitbukkit.MainClass;
 
 import fr.pumpmykitbukkit.Command.KitAddCommand;
+import fr.pumpmykitbukkit.Command.KitBuyCommand;
 import fr.pumpmykitbukkit.Command.KitChgCommand;
 import fr.pumpmykitbukkit.Command.KitDelCommand;
 import fr.pumpmykitbukkit.Command.KitGiverCommand;
@@ -22,7 +23,9 @@ public class CommandManager {
 		
 		kitCmd = new KitCommandExecutor();
 		
+		MainKit.getInstance().getCommand("buykit").setExecutor(new KitBuyCommand());
 		MainKit.getInstance().getCommand("kit").setExecutor(kitCmd);
+		
 		kitCmd.addSubCommand("help", new KitHelpCommand());
 		kitCmd.addSubCommand("list", new KitListCommand());
 		
@@ -33,6 +36,7 @@ public class CommandManager {
 		kitCmd.addSubCommand("add", new KitAddCommand());
 		kitCmd.addSubCommand("del", new KitDelCommand());
 		kitCmd.addSubCommand("change", new KitChgCommand());
+		
 		
 	}
 
