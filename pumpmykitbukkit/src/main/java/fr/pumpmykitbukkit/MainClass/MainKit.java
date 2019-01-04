@@ -2,6 +2,8 @@ package fr.pumpmykitbukkit.MainClass;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+import fr.pumpmykitcore.config.ConfigUtils;
+
 public class MainKit  extends JavaPlugin{
 	
 private static MainKit instance;
@@ -12,6 +14,7 @@ private static MainKit instance;
 			instance = this;
 
 			CommandManager.init();
+			ConfigUtils.init();
 			
 	}
 	public void onDisable() {

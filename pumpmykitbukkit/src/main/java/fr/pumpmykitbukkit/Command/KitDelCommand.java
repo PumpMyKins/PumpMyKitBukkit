@@ -16,8 +16,6 @@ public class KitDelCommand implements ISubCommand {
 		
 		if(sender.hasPermission("kit.del")) {
 			
-			Utils.debug(args.get(1));
-			Utils.debug(args);
 			CommandHandler.deleteKit(args.get(1));
 		}
 		return false;

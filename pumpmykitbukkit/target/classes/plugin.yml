@@ -1,0 +1,9 @@
+name: Pmk-Kit
+version: 2.0
+author: PumpMyKins
+main: fr.pumpmykitbukkit.MainClass.MainKit
+commands:
+  kit:
+    description: Affiche toute les commandes de kit.
+  buykit:
+    description: Achat buycraft kit.

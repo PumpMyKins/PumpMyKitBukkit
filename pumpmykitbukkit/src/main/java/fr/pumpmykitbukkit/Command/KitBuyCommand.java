@@ -20,7 +20,6 @@ public class KitBuyCommand implements CommandExecutor {
 		//SChéma KitsUtils : String buyerUuid, String kitname, Timestamp date, String idPurchase
 		/*
 		Timestamp timekit = new Timestamp(System.currentTimeMillis());
-		Utils.debug(args);
 		KitsUtils.kitBuyLog(args[1], args[2], timekit , args[0]);
 		*/
 		Player sufike = Bukkit.getPlayer(sender.getName());

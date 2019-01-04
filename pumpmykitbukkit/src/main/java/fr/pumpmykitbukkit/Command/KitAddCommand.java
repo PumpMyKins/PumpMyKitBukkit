@@ -23,8 +23,6 @@ public class KitAddCommand implements ISubCommand {
 	public boolean onSubCommand(Player sender, Command cmd, List<String> args) {
 
 		if(sender.hasPermission("kit.add")) {
-			Utils.debug(KitsUtils.getKit(args.get(1)));
-			Utils.debug(args.get(1));
 			if(KitsUtils.getKit(args.get(1)) == null) {
 				Inventory invKit = Bukkit.createInventory(null, 27, ChatColor.RED + "" + ChatColor.BOLD + "Nouveau Kit : " + args.get(1));
 
