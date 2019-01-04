@@ -7,6 +7,7 @@ import fr.pumpmykitbukkit.Command.KitDelCommand;
 import fr.pumpmykitbukkit.Command.KitGiverCommand;
 import fr.pumpmykitbukkit.Command.KitHelpCommand;
 import fr.pumpmykitbukkit.Command.KitListCommand;
+import fr.pumpmykitbukkit.Command.KitRandom;
 import fr.pumpmykitcore.command.CommandHandler;
 import fr.pumpmykitcore.obj.Kit;
 
@@ -36,6 +37,7 @@ public class CommandManager {
 		kitCmd.addSubCommand("add", new KitAddCommand());
 		kitCmd.addSubCommand("del", new KitDelCommand());
 		kitCmd.addSubCommand("change", new KitChgCommand());
+		kitCmd.addSubCommand("random", new KitRandom());
 		
 		
 	}
