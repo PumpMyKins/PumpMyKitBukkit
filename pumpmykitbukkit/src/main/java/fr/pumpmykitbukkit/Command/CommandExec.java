@@ -48,6 +48,10 @@ public class CommandExec implements CommandExecutor {
 			return kits(sender, label, args);
 		case "kitrefill":
 			return refill(sender, label, args);
+		case "kitgiveall":
+			return giveall(sender, label, args);
+		case "kitdeleteall":
+			return deleteall(sender, label, args);
 		}
 
 		if (!(sender instanceof Player)) {
@@ -74,7 +78,7 @@ public class CommandExec implements CommandExecutor {
 			}
 			Bukkit.getPluginManager().disablePlugin(instance);
 			Bukkit.getPluginManager().enablePlugin(instance);
-			sender.sendMessage(ChatColor.GOLD + "BetterKits reloaded.");
+			sender.sendMessage(ChatColor.GOLD + "PumpMyBetterKits reloaded.");
 			break;
 		}
 
@@ -129,6 +133,100 @@ public class CommandExec implements CommandExecutor {
 				"name", oPlayer.getName(),
 				"amount", String.valueOf(amount+current),
 				"kit", kit.getName()));
+		return true;
+	}
+	
+	public boolean giveall(CommandSender sender, String label, String[] args) {
+		
+		if(!sender.hasPermission("betterkits.give")) {
+			sender.sendMessage(Messages.get("PermissionDenied"));
+			return false;
+		}
+		if(args.length < 1) {
+			sender.sendMessage("Usage: /"+label+" (kitname) [quantity]");
+			return false;
+		}
+		
+		Kit kit = instance.getKit(args[1]);
+		if(kit == null) {
+			sender.sendMessage(Messages.get("KitNotFound"));
+			return false;
+		}
+		for(OfflinePlayer oPlayer : Bukkit.getOfflinePlayers()) {
+			
+			if(oPlayer.hasPlayedBefore()) {
+				
+				PlayerData pd = instance.getPlayersData().get(oPlayer.getUniqueId());
+				if(pd == null) {
+					pd = new PlayerData(oPlayer.getUniqueId());
+					instance.getPlayersData().put(oPlayer.getUniqueId(), pd);
+				}
+				
+				final int amount;
+				if(args.length == 1) {
+					amount = 1;
+				} else {
+					amount = Integer.valueOf(args[1]);
+				}
+				
+				Integer current = pd.getPendingKits().get(kit.getName());
+				if(current == null) {
+					current = 0;
+				}
+				pd.getPendingKits().put(kit.getName(), amount+current);
+				
+				instance.saveData();
+			}
+		}
+		return true;
+	}
+	public boolean deleteall(CommandSender sender, String label, String[] args) {
+		
+		if(!sender.hasPermission("betterkits.give")) {
+			sender.sendMessage(Messages.get("PermissionDenied"));
+			return false;
+		}
+		if(args.length < 1) {
+			sender.sendMessage("Usage: /"+label+" (kitname) [quantity]");
+			return false;
+		}
+		
+		Kit kit = instance.getKit(args[1]);
+		if(kit == null) {
+			sender.sendMessage(Messages.get("KitNotFound"));
+			return false;
+		}
+		
+		for(OfflinePlayer oPlayer : Bukkit.getOfflinePlayers()) {
+			
+			if(oPlayer.hasPlayedBefore()) {
+				
+				PlayerData pd = instance.getPlayersData().get(oPlayer.getUniqueId());
+				if(pd == null) {
+					pd = new PlayerData(oPlayer.getUniqueId());
+					instance.getPlayersData().put(oPlayer.getUniqueId(), pd);
+				}
+				
+				final int amount;
+				if(args.length == 1) {
+					amount = 1;
+				} else {
+					amount = Integer.valueOf(args[1]);
+				}
+				Integer current = pd.getPendingKits().get(kit.getName());
+				if(current == null) {
+					current = 0;
+				}
+				int q;
+				q = current-amount;
+				if(q < 0) {
+					q = 0;
+				}
+				pd.getPendingKits().put(kit.getName(), q);
+				
+				instance.saveData();
+			}
+		}
 		return true;
 	}
 
